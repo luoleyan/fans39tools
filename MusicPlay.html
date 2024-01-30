@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+
+        .play-warp {
+            position: relative;
+        }
+
+        .play-warp .play-control {
+            width: 360px;
+            height: 80px;
+            padding: 20px 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .play-control .cover {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            margin-top: -60px;
+            padding: 6px;
+            position: relative;
+            animation: zhuan 5s infinite linear;
+            animation-play-state: paused;
+        }
+
+        .play-control .cover::before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+        }
+
+        .cover img {
+            width: 100%;
+            border-radius: 50%;
+        }
+
+        .play-control .control {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .control i {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 26px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .control i:hover {
+            border-radius: 6px;
+            background-color: rgba(71, 70, 70, .2);
+            color: #fff;
+        }
+
+        .play-warp .play-info {
+            width: 90%;
+            /* height: 100%; */
+            position: absolute;
+            /* top: -100%; */
+            top: 0;
+            left: 50%;
+            padding: 10px;
+            transform: translateX(-50%);
+            z-index: -1;
+            background: rgba(255, 255, 255, .65);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 136, .35);
+            backdrop-filter: blur(3.5px);
+            -webkit-backdrop-filter: blur(3.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            display: flex;
+            justify-content: flex-end;
+            opacity: 0;
+        }
+
+        .play-info .info {
+            width: 60%;
+            /* height: 100%; */
+            font-size: 10px;
+        }
+
+        .info .name {
+            font-size: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .info .singer-album {
+            color: #757474;
+            line-height: 21px;
+        }
+
+        .info .music_progress {
+            width: 100%;
+        }
+
+        .music_progress .music_progress_top {
+            display: flex;
+            justify-content: space-between;
+            color: #66ccff;
+            line-height: 21px;
+        }
+
+        .music_progress .music_progress_bar {
+            width: 100%;
+            height: 3px;
+            background: #e5e5e5;
+            border-radius: 10px;
+            margin-top: 3px;
+        }
+
+        .music_progress_bar .music_progress_line {
+            width: 0%;
+            /* width: 50%; */
+            height: 100%;
+            background-color: #66ccff;
+        }
+
+        .mask_bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url("illust_96308041_20221116_163750.png") no-repeat center center;
+            z-index: -11;
+            background-size: cover;
+            filter: blur(50px);
+            transition: all 1s;
+        }
+
+        .modal {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .modal .modal-box {
+            width: 30%;
+            height: 100%;
+            padding: 20px;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .modal-box .modal-box-top {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-box-top .modal-close {
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+
+        .modal-box-top .modal-close:hover {
+            transform: rotate(180deg);
+        }
+
+        .modal-box .modal-wrapper {
+            width: 100%;
+            height: calc(100% - 40px);
+            overflow-y: auto;
+        }
+
+        .modal-wrapper .music-list {
+            list-style: none;
+        }
+
+        .music-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .fa-play-circle-o,
+        .fa-pause-circle-o {
+            font-size: 20px;
+            margin-right: 20px;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        .fa-play-circle-o:hover {
+            transform: scale(1.2);
+        }
+
+        .fa-pause-circle-o:hover {
+            transform: scale(1.2);
+        }
+
+        .playing {
+            color: #66ccff;
+        }
+
+        @keyframes zhuan {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="play-warp">
+        <div class="play-info">
+            <div class="info">
+                <div class="name">晴る</div>
+                <div class="singer-album">ヨルシカ (Yorushika) - 晴る</div>
+
+                <div class="music_progress">
+                    <div class="music_progress_top">
+                        <span class="current-time">00:00</span>
+                        <span class="time">04:30</span>
+                    </div>
+                    <div class="music_progress_bar">
+                        <div class="music_progress_line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="play-control">
+            <div class="cover">
+                <img src="./illust_103207318_20221202_163124_1706414564.jpg" alt="封面">
+            </div>
+            <div class="control">
+                <i id="prevBtn" class="fa fa-step-backward" aria-hidden="true"></i>
+                <i id="playBtn" class="fa fa-play" aria-hidden="true"></i>
+                <i id="nextBtn" class="fa fa-step-forward" aria-hidden="true"></i>
+                <i id="openModal" class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="mask_bg"></div>
+
+    <div class="modal">
+        <div class="modal-box">
+            <div class="modal-box-top">
+                <div class="modal-title">音乐列表</div>
+                <div class="modal-close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="modal-wrapper">
+                <ul class="music-list">
+                    <!-- <li>
+                        <span>晴る - ヨルシカ (Yorushika)</span>
+                        <span class="fa fa-play-circle-o" aria-hidden="true"></span>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <audio src=""></audio>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script>
+
+        // 获取音乐列表
+        var musicList = []
+
+        var currentIndex = 0
+
+        $.ajax({
+            type: 'GET',
+            url: './music.json',
+            dataType: 'json',
+            success: function (data) {
+                musicList = data
+                // console.log(data);
+                render(musicList[currentIndex])
+                renderMusicList(musicList)
+            },
+        })
+
+        $("#playBtn").on("click", function () {
+            // console.log(1111);
+            if ($("audio").get(0).paused) {
+                $(this).removeClass("fa-play").addClass("fa-pause")
+                $(".play-info").animate({
+                    top: "-100%",
+                    opacity: 1,
+                }, "slow")
+
+                $(".cover").css("animation-play-state", "running")
+
+                $("audio").get(0).play()
+            } else {
+                $(this).removeClass("fa-pause").addClass("fa-play")
+                $(".play-info").animate({
+                    top: "0%",
+                    opacity: 0,
+                }, "slow")
+
+                $(".cover").css("animation-play-state", "paused")
+
+                $("audio").get(0).pause()
+            }
+            renderMusicList(musicList)
+        })
+
+        $("#prevBtn").on("click", function () {
+            currentIndex--
+            if (currentIndex < 0) {
+                currentIndex = musicList.length - 1
+            }
+            render(musicList[currentIndex])
+            $("#playBtn").trigger("click")
+            // $("audio").get(0).play()
+        })
+
+        $("#nextBtn").on("click", function () {
+            currentIndex++
+            if (currentIndex > musicList.length - 1) {
+                currentIndex = 0
+            }
+            render(musicList[currentIndex])
+            $("#playBtn").trigger("click")
+            // $("audio").get(0).play()
+        })
+
+        $("#openModal").on("click", function () {
+            $(".modal").css({
+                display: "block",
+            })
+        })
+
+        $(".modal-close").on("click", function () {
+            $(".modal").css({
+                display: "none",
+            })
+        })
+
+        function formatTime(time) {
+            var minute = Math.floor(time / 60)
+            var second = Math.floor(time % 60)
+            minute = minute < 10 ? "0" + minute : minute
+            second = second < 10 ? "0" + second : second
+            return minute + ":" + second
+        }
+
+        $("audio").on("timeupdate", function () {
+            var currentTime = $("audio").get(0).currentTime || 0
+            var duration = $("audio").get(0).duration || 0
+            $(".current-time").text(formatTime(currentTime))
+            $(".time").text(formatTime(duration))
+            var percent = currentTime / duration * 100
+            $(".music_progress_line").css("width", percent + "%")
+        })
+
+        $(".music-list").on("click", ".fa", function () {
+            if ($(this).hasClass("fa-play-circle-o")) {
+                var index = $(this).attr("data-index")
+                currentIndex = index
+                render(musicList[currentIndex])
+                $("#playBtn").trigger("click")
+            } else {
+                $("#playBtn").trigger("click")
+                console.log(1111);
+            }
+        })
+
+        $("audio").on("ended", function () {
+            currentIndex++
+            if (currentIndex >= musicList.length) {
+                currentIndex = 0
+            }
+            render(musicList[currentIndex])
+            $("#playBtn").trigger("click")
+        })
+
+        function render(data) {
+            // console.log(data);
+            $(".name").text(data.name)
+            $(".singer-album").text(data.singer + " - " + data.album)
+            $(".time").text(data.time)
+            $(".cover img").attr("src", data.cover)
+            $("audio").attr("src", data.audio_url)
+            $(".mask_bg").css({
+                background: `url("${data.cover}") no-repeat center center`,
+            })
+        }
+
+        function renderMusicList(list) {
+            $(".music-list").empty()
+            $.each(list, function (index, item) {
+                // console.log(index,item);
+                var $li = $(`
+                    <li class="${index == currentIndex ? "playing" : ""}">
+                        <span>0${index + 1}. ${item.name} - ${item.singer}</span>
+                        <span data-index = "${index}" class="fa ${index == currentIndex && !$('audio').get(0).paused
+                        ? 'fa-pause-circle-o' : ' fa-play-circle-o'}" aria-hidden="true"></span>
+                    </li>
+                `)
+                $(".music-list").append($li)
+            })
+        }
+
+    </script>
+</body>
+
+</html>
