@@ -281,6 +281,7 @@
                 <i id="prevBtn" class="fa fa-step-backward" aria-hidden="true"></i>
                 <i id="playBtn" class="fa fa-play" aria-hidden="true"></i>
                 <i id="nextBtn" class="fa fa-step-forward" aria-hidden="true"></i>
+                <i id="volumeBtn" class="fa fa-volume-off" aria-hidden="true"></i>
                 <i id="openModal" class="fa fa-bars" aria-hidden="true"></i>
             </div>
         </div>
@@ -374,6 +375,17 @@
             render(musicList[currentIndex])
             $("#playBtn").trigger("click")
             // $("audio").get(0).play()
+        })
+
+        $("#volumeBtn").on("click", function () {
+            if ($(this).hasClass("fa-volume-up")) {
+                $(this).removeClass("fa-volume-up").addClass("fa-volume-off")
+                $("audio").get(0).volume = 0
+            } else {
+                $(this).removeClass("fa-volume-off").addClass("fa-volume-up")
+                $("audio").get(0).volume = 1
+            }
+
         })
 
         $("#openModal").on("click", function () {
