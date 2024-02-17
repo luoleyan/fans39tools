@@ -278,6 +278,7 @@
                 <img src="./illust_103207318_20221202_163124_1706414564.jpg" alt="封面">
             </div>
             <div class="control">
+                <i id="randomBtn" class="fa fa-random" aria-hidden="true"></i>
                 <i id="prevBtn" class="fa fa-step-backward" aria-hidden="true"></i>
                 <i id="playBtn" class="fa fa-play" aria-hidden="true"></i>
                 <i id="nextBtn" class="fa fa-step-forward" aria-hidden="true"></i>
@@ -329,6 +330,15 @@
                 render(musicList[currentIndex])
                 renderMusicList(musicList)
             },
+        })
+        $("#randomBtn").on("click", function () {
+            if(this.classList.contains("fa-random")){
+                this.classList.remove("fa-random")
+                this.classList.add("fa-repeat")
+            }else{
+                this.classList.remove("fa-repeat")
+                this.classList.add("fa-random")
+            }
         })
 
         $("#playBtn").on("click", function () {
