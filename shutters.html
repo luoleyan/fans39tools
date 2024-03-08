@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shutters</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    .shell {
+        height: 100vh;
+        display: flex;
+    }
+
+    .box {
+        flex: 1;
+        min-width: 0;
+        box-shadow: -20px 0 20px 5px rgba(255,255,255,0.7);
+        transition: flex 0.8s;
+        background-size: cover;
+        background-position: center;
+        display: grid;
+        place-items: center;
+        border: 10px solid #fff;
+    }
+
+    .box :hover {
+        flex: 2;
+    }
+
+    .box :hover .text {
+        animation: appear 0.8s forwards 0.3s;
+    }
+
+    .img1 {
+        background-image: url("./resource/photo/20221109_152701.jpg");
+    }
+
+    .img2 {
+       background-image: url("./resource/photo/20221118_145053.jpg"); 
+    }
+
+    .img3 {
+        background-image: url("resource/photo/20221118_145137.jpg");
+    }
+
+    .img4 {
+        background-image: url("./resource/photo/20221202_161945.jpg");
+    }
+
+    .text{
+        padding: 45px 75px;
+        opacity: 0;
+        color: rgb(255, 255, 255);
+        height: 380px;
+        width: 600px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    header {
+        height: 73px;
+        font-size: 65px;
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 65px;
+        font-weight: bold;
+        border-bottom:2px solid #fff;
+    }
+
+    .title {
+        display: inline-block;
+        height: 65px;
+        text-decoration: underline;
+        text-underline-offset: 10px;
+        text-decoration-thickness: 4px;
+    }
+
+    .num {
+        margin-left: -18px;
+    }
+
+    .text p {
+        margin: 70px 0;
+        font-size: 30px;
+    }
+
+    @keyframes appear {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+
+</style>
+
+<body>
+    <div class="shell">
+        <div class="box img1">
+            <div class="text">
+                <header>
+                    <span class="title">
+                        NO.
+                    </span>
+                    <span class="num">
+                        1
+                    </span>
+                </header>
+                <p>
+                    这幅数字艺术作品展示了一个动漫风格的女性角色，站在一个充满科幻元素的街道上。
+                </p>
+            </div>
+        </div>
+
+        <div class="box img2">
+            <div class="text">
+                <header>
+                    <span class="title">NO.</span>
+                    <span class="num">2</span>
+                </header>
+                <p>
+                    这是一张描绘动漫风格女性角色的图像。角色穿着粉红色和紫色的服装，背景是抽象的粉红色和白色光芒。
+                </p>
+            </div>
+        </div>
+
+        <div class="box img3">
+            <div class="text">
+                <header>
+                    <span class="title">NO.</span>
+                    <span class="num">3</span>
+                </header>
+                <p>
+                    这是一张描绘一名宇航员在太空站内观看地球的插画。让我们详细看看这幅画面
+                </p>
+            </div>
+        </div>
+
+        <div class="box img4">
+            <div class="text">
+                <header>
+                    <span class="title">NO.</span>
+                    <span class="num">4</span>
+                </header>
+                <p>
+                    这是一张描绘动漫风格的角色和一些其他元素的图像。
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+</html>

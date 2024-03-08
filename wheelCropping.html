@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel cropping</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 2000px;
+            overflow-x: hidden;
+        }
+
+        .shell {
+            widows: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transition: cilp-path 0.5s ease;
+            position: relative;
+        }
+
+        .img{
+            width: 100%;
+            height: 100%;
+            background-image: url(./resource/photo/1660788271233.jpg);
+            background-size: cover;
+            transform: scale(1);
+            transition: transform 0.5s ease;
+        }
+
+        .main{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 100px;
+        }
+        
+        .main h2{
+            font-size: 50px;
+            margin-bottom: 40px;
+        }
+
+        .main span{
+            padding: 0 100px;
+            font-size: 30px;
+        }
+
+
+
+        @import url('https://fonts.googleapis.com/css?family=Lato:700,900')
+        @font-face {
+            font-family: Arno Pro;
+            src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ArnoPro-Regular.otf);
+            font-style:normal ;
+        }
+        @font-face {
+            font-family: Arno Pro;
+            src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ArnoPro-Italic.otf);
+            font-style: italic ;
+        }
+
+        p{
+            font-family: Arno Pro, sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        p.credits{
+            font-style: italic;
+            text-indent: 0 !important;
+            margin: 1rem 0;
+        }
+
+        p a{
+            font-weight: bolder;
+            color: #000;
+            text-decoration: none;
+        }
+
+        @supports(font-variant-caps: small-caps ){
+            .multicol:first-of-type p:first-of-type{
+                font-variant-caps:small-caps ;
+            }
+                
+            }
+        
+            p:not(:first-of-type){
+                text-indent: 1.4rem;
+            }
+            
+            .multicol{
+                column-count: 4;
+                column-gap: 2rem;
+            }
+
+            .multicol+img{
+                margin: 2rem 0;
+            }
+
+            article{
+                widows: 80%;
+                margin: 0 auto 4rem;
+            }
+
+            article img{
+                width: 100%;
+            }
+
+            article h1{
+                margin-top:0 ;
+                font-size: 3rem;
+            }
+
+            article h2{
+                break-after: column;
+                font-size: 1.5rem;
+            }
+
+            h1,
+            h2{
+                font-family: Lato, sans-serif;
+            }
+
+            @media all and (max-width: 1600px) {
+                .multicol{
+                    column-count: 3;
+                }
+            }
+
+            @media all and (max-width: 1000px) {
+                .multicol{
+                    column-count: 2;
+                }
+            }
+
+            @media all and (max-width: 800px) {
+
+                article h2{
+                    break-after: avoid;
+                }
+
+                .multicol{
+                    column-count: 1;
+                }
+            }
+
+            @media all and (max-width: 600px) {
+                body{
+                    margin: 0;
+                }
+
+                article{
+                    widows: 100%;
+                }
+
+                .multicol{
+                    padding: 0 1rem;
+                }
+
+                article header{
+                    margin-bottom: 2.5rem;
+                    padding-bottom: 0;
+                    border-bottom:none ;
+                }
+
+                h1{
+                    margin-bottom:0 ;
+                }
+            }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <header>
+            <div class="img"></div>
+        </header>
+        <div class="main">
+            <main>
+                <article>
+                    <div class="multicol">
+                        <h1>这幅动漫风格的插画展示了一个女性角色，她坐在水中，周围飘散着花瓣。</h1>
+                        <h2>她穿着一件浅色连衣裙，上面有丝带和精致的图案。</h2>
+                        <p>空中飘散着花瓣，为整个场景增添了一抹色彩。
+                            这幅插画的氛围温柔而宁静，让人感到宁静与美好</p>
+                    </div>
+                    <img src="./resource/photo/1662296173793.jpg" alt="">
+
+                    <div class="multicol">
+                        <p>
+                            这是一张描绘一个人物在热带海滩上的动漫风格图片。人物被水花包围，背景是蔚蓝的天空和棕榈树。
+
+                            人物穿着白色上衣和深色裙子，头发是紫色的。
+                            人物戴着一顶装饰有五颜六色花朵的草帽。
+                            背景中有棕榈树和清澈的蓝天，云朵飘浮其中。
+                            水滴被捕捉在半空中，为画面增添了活力和动感。
+                            这幅画面充满了活力，让人感到愉悦。
+                        </p>
+                    </div>
+                    
+                    <img src="./resource/photo/1678980106954.jpg" alt="">
+                    <div class="muticol">
+                        <p>
+                            这幅图展示了一个充满氛围的场景，其中包括三个动漫风格的角色，她们坐在装饰着彩色气球和美味蛋糕的明亮房间里。
+
+                            图中有许多五颜六色的气球漂浮在空中，营造出欢乐的氛围。
+                            一张桌子上摆满了各种蛋糕和点心，暗示着某种庆祝活动或聚会。
+                            角色们穿着华丽的服装，配饰精致，似乎在愉快地互动。
+                            大窗户让自然光洒满房间，投下柔和的阴影，突出了角色和装饰。
+                            整体画面的情绪是欢乐和庆祝，通过鲜艳的色彩和充满趣味的元素进一步增强。
+                            这是一个充满活力和快乐的场景！
+                        </p>
+                    </div>
+
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const header = document.querySelector('header');
+        const img = document.querySelector('.img');
+        let scrollDistance = 0
+        let requestId = null
+
+        function updateHeaderCilpPath(){
+            const clipPathValue = `polygon(0 0, 100% 0%, 100% ${(scrollDistance<=600) ? 100 - ((scrollDistance/600)*60) : 75}%)`
+            header.style.clipPath = clipPathValue
+            const scaleValue = 1 + ((scrollDistance/600)*1)
+            img.style.transform = `scale(${scaleValue})`
+            const opacityValue = (scrollDistance/600)
+        }
+
+        function scrollHandler(event){
+            if(event.deltaY < 0){
+                scrollDistance = Math.max(0, scrollDistance + event.deltaY)
+            }else{
+                scrollDistance = Math.min(600, scrollDistance + event.deltaY)
+            }
+            if(!requestId){
+                requestId = window.requestAnimationFrame(() =>{
+                    updateHeaderCilpPath()
+                    requestId = null
+                })
+            }
+        }
+
+        window.addEventListener('wheel', scrollHandler);
+    </script>
+</body>
+
+</html>

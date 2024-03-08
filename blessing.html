@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blessing</title>
+    <style>
+        body{
+            background-color: #c6070c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #ffe392;
+            flex-direction: column;
+        }
+
+        #phrase{
+            margin-bottom: 20px;
+        }
+
+        #line1{
+            height: 20px;
+            font-size: 1.1em;
+            letter-spacing: 30px;
+        }
+
+        #line2{
+            font: 700 8em '';
+            text-align: center;
+            padding: 0;
+        }
+
+        #line3{
+            font-size: 3em;
+        }
+
+        #btn{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 100px;
+            background-color: #ffe392;
+            font-size: 30px;
+            color: #c6070c;
+        }
+    </style>
+</head>
+<body>
+    <div id="phrase">
+        <span id="line1">wan shi ru yi</span><br>
+        <span id="line2">万 事 如 意</span><br>
+        <span id="line3">(MAY 10,000 THINGS GO ACCORDING TO YOUR WISHES)</span>
+    </div>
+    <button id="btn">祝福++</button>
+
+    <script>
+        var phrases = [
+            ['wo xi huan ni', '我 喜 欢 你', '(I LIKE YOU)'],
+            ['xin xi rui ru', '新 喜 瑞 如', '(NEW HAPPINESS IS REAL)'],
+            ['shen ti jian kang', '身 体 健 康', '(HEALTH IS THE KEY)'],
+            ['cai yuan guang jin', '财 源 广 进', '(WEALTH IS THE ROAD)'],
+            ['wan shi ru yi', '万 事 如 意', '(MAY 10,000 THINGS GO ACCORDING TO YOUR WISHES)'],
+            ['da ji da li', '大 吉 大 利', '(LUCKY DOG)'],
+            ['nian nian you yv', '年 年 有 余', '(MONEY IN THE BAG)'],
+            ['gong he xin xi', '恭 贺 新 禧', '(HAPPY NEW YEAR)'],
+            ['xin nian kuai le', '新 年 快 乐', '(HAPPY NEW YEAR)'],
+            ['qing ren jie tou', '清 仁 节 厚', '(GENEROUS PEOPLE)']
+        ]
+        
+        var generateBtn = document.getElementById('btn');
+        var line1 = document.getElementById('line1');
+        var line2 = document.getElementById('line2');
+        var line3 = document.getElementById('line3');
+        var currtentIndex = 0;
+        function generatePhrase() {
+            var phrase = phrases[currtentIndex];
+            line1.textContent = phrase[0];
+            line2.textContent = phrase[1];
+            line3.textContent = phrase[2];
+            currtentIndex = (currtentIndex + 1) % phrases.length;
+        }
+
+        generateBtn.addEventListener('click', generatePhrase);
+    </script>
+</body>
+</html>
