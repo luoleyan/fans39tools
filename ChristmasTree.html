@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas tree</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            background-color: beige;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .xmax,
+        .tree{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .tree{
+            position: relative;
+        }
+
+        .box{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            border-radius: 50px;
+            left: calc(var(--x) * 10px);
+            top: calc(var(--y) * 10px);
+        }
+
+        .trunk{
+            width: 50px;
+            height: 70px;
+            background-color: #9e6328;
+        }
+
+        .trees{
+            height: 50px;
+            border-radius: 50px;
+        }
+
+        .tree div,
+        .trunk{
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tree div:nth-child(4n+1){
+            background: #2d6359;
+        }
+
+        .tree div:nth-child(4n+2){
+            background: #32776a;
+        }
+
+        .tree div:nth-child(4n+3){
+            background: #268b4c;
+        }
+
+        .tree div:nth-child(4n+4){
+            background: #459763;
+        }
+    </style>
+</head>
+<body>
+    <div class="xmax">
+        <div class="tree">
+            <div class="ball">
+                <div class="box" style="--x:25; --y:8;"></div>
+                <div class="box" style="--x:15; --y:23;"></div>
+                <div class="box" style="--x:30; --y:23;"></div>
+                <div class="box" style="--x:10; --y:30;"></div>
+                <div class="box" style="--x:20; --y:28;"></div>
+                <div class="box" style="--x:35; --y:33;"></div>
+                <div class="box" style="--x:17; --y:12;"></div>
+                <div class="box" style="--x:24; --y:17;"></div>
+            </div>
+        </div>
+        <div class="trunk"></div>
+    </div>
+
+    <script>
+        for(let i = 0; i <= 8; i++){
+            let tree = document.createElement('div');
+            tree.classList.add('trees');
+            tree.style.width = (i*60) + 'px'
+            document.querySelector('.tree').appendChild(tree);
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            const colors = ['#268b4c', '#459763', '#64a778', '#83b78d', '#a2c7a2', '#c1d7c1', '#e0e7e0', '#ffffff',"#f4d348", "#37799e", "#bb3e39", "#e388b1"];
+            const colorCount = {}
+            const boxes = document.querySelectorAll('.box');
+
+            boxes.forEach(box => {
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+                while(colorCount[randomColor] && colorCount[randomColor] >= 2){
+                    randomColor = colors[Math.floor(Math.random() * colors.length)];
+                }
+
+                box.style.backgroundColor = randomColor;
+                colorCount[randomColor] = (colorCount[randomColor] || 0) + 1;
+            })
+        })
+    </script>
+</body>
+</html>
