@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water flow ripple button</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(to top, #71b7e6 0%, #9b59b6 100%);
+        }
+
+        .button{
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            font-size: 2em;
+            padding: 0.75em 2em;
+            color: #66ccff;
+            border: 0.15em solid #66ccff;
+            border-radius: 2em;
+            transition: 4s;
+        }
+
+        .button::before,
+        .button::after{
+            content: "";
+            position: absolute;
+            top: -1.5em;
+            z-index: -1;
+            width: 200%;
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 40%;
+            background-color: rgba(0,0,255,0.5);
+            transition: 4s;
+        }
+
+        .button::before{
+            left: -80%;
+            transform: translate3d(0,5em, 0) rotate(-340deg);
+        }
+
+        .button::after{
+            right: -80%;
+            transform: translate3d(0,5em, 0) rotate(390deg);
+        }
+
+        .button:hover,
+        .button:focus{
+            color: #fff;
+        }
+
+        .button:hover::before,
+        .button:hover::after,
+        .button:focus::before,
+        .button:focus::after{
+            transform: none;
+            background-color: rgba(0, 0, 255, 0.75);
+        }
+            
+            
+    </style>
+</head>
+<body>
+    <a href="" class="button">Hover me</a>
+</body>
+</html>
