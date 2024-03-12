@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe the business card</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: rgb(204,212,218);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .a{
+            position: relative;
+            width: 700px;
+            height: 400px;
+            border: #fff 10px solid;
+            background-color: rgb(120,130,140);
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            filter: drop-shadow(4px 4px 5px rgba(0,0,0,0.5));
+        }
+
+        .b{
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            left: 0;
+            margin: 75px 50px;
+            transition: 1s;
+        }
+
+        .b a{
+            text-decoration: none;
+            color: #fff;
+            font: 900 28px '';
+        }
+
+        .b h2{
+            transition: .5s 1s;
+            color: #fff;
+            font: 500 15px '';
+            position: absolute;
+            top: 70px;
+        }
+
+        .c{
+            position: absolute;
+            top: -130px;
+            right: -240px;
+        }
+
+        .d,
+        .e{
+            position: absolute;
+            right: calc(var(--i) * 100px);
+            width: calc(var(--w) * 40px);
+            height: 500px;
+            overflow: hidden;
+            border-radius: 100px;
+            transform: rotateZ(220deg) translate(0,0);
+            background: rgb(240,220,150);
+            transition: .5s .5s;
+        }
+
+        .d:nth-child(2){
+            background: rgb(240,150,150);
+        }
+
+        .e{
+            left: -470px;
+            top: -140px;
+            width: 70px;
+            background-color: rgb(90,220,220) ;
+        }
+
+        .a:hover .c div{
+            transition: .5s calc(var(--i) * .1s);
+            transform: rotateZ(220deg) translate(calc(var(--i) * 100px),calc(var(--i) * 100px));
+        }
+
+        .a:hover .b{
+            transition: 1s .5s;
+            left: 370px;
+        }
+
+        .a:hover .b span{
+            transition: 1s .5s;
+            top: 105px;
+        }
+
+        .a:hover .b h2{
+            transition: 1s .5s;
+            opacity: 1;
+        }
+
+        .f{
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            background-image: url("./resource/photo/bing_generated_qrcode.png");
+            background-size: cover;
+            margin: 70px;
+            opacity: 0;
+            transition: .5s;
+        }
+
+        .a:hover .f{
+            transition: 1s 1.3s;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <div class="b">
+            <a href="#">LUOLEYAN</a>
+            <h2>GAYHUB:LUOLEYAN</h2>
+            <span>大家好，我是一名前端工程师，拥有超过5年的行业经验。在这段时间里，我专注于使用最新的技术来创建响应迅速、用户友好的网页。我熟练掌握HTML、CSS、JavaScript，以及流行的框架和库，如React、Vue和Angular。<br>
+                我对编码充满热情，喜欢在解决复杂问题的过程中不断学习和成长。我相信良好的用户体验始于细节的关注，因此我总是致力于提升网站的性能和可访问性。<br>
+                在团队合作方面，我擅长沟通和协调，能够与设计师和后端工程师紧密合作，确保项目的顺利进行。我也乐于分享知识，经常参与社区活动和技术交流。<br>
+                我期待能够加入一个充满活力的团队，在那里我可以继续发挥我的专长，并与同事们一起推动技术的边界。</span>
+        </div>
+        <div class="c">
+            <div class="d" style="--i:1; --w:1.5"></div>
+            <div class="d" style="--i:2; --w:1.6"></div>
+            <div class="d" style="--i:3; --w:1.4"></div>
+            <div class="d" style="--i:4; --w:1.7"></div>
+            <div class="e" style="--i:1"></div>
+        </div>
+        <div class="f"></div>
+    </div>
+</body>
+</html>

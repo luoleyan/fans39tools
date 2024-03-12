@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky contact lists</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            background-color: rgb(245, 245, 245);
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shell {
+            background-color: rgb(185,230,255);
+            padding: 10px;
+            height: 450px;
+            width: 500px;
+            overflow-y: scroll;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            padding: 30px;
+            text-align: center;
+            font: 100 44px 'Courier New', monospace;
+            color: rgb(185,230,255);
+        }
+
+        .box h2{
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            color: rgb(185,230,255);
+        }
+
+        .box ul{
+            list-style: none;
+            font: 100 24px 'Courier New', monospace;
+        }
+
+        .box ul li{
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <h1 class="title">contact</h1>
+        <div class="box">
+            <h2>A</h2>
+            <ul>
+                <li>Annot</li>
+                <li>Alice</li>
+                <li>Anm</li>
+                <li>Alia</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>B</h2>
+            <ul>
+                <li>Bob</li>
+                <li>Bella</li>
+                <li>Brain</li>
+                <li>Bully</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>J</h2>
+            <ul>
+                <li>John</li>
+                <li>Jane</li>
+                <li>Jack</li>
+                <li>Jerry</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>M</h2>
+            <ul>
+                <li>Mike</li>
+                <li>Mary</li>
+                <li>Martin</li>
+                <li>Morgan</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>W</h2>
+            <ul>
+                <li>Wendy</li>
+                <li>William</li>
+                <li>Wendy</li>
+                <li>William</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>Y</h2>
+            <ul>
+                <li>Yvonne</li>
+                <li>Yuki</li>
+                <li>Yui</li>
+                <li>Yvon</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>Z</h2>
+            <ul>
+                <li>Zack</li>
+                <li>Zoe</li>
+                <li>Zane</li>
+                <li>Zoey</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

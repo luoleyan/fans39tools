@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax scrolling</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .shell{
+            height: 100vh;
+            overflow-x: hidden;
+            perspective: 3px;
+        }
+
+        .shell div{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        .image{
+            transform: translateZ(-1px) scale(1.6); /* 设置背景图片的缩放和透视效果 */
+            background-size: cover;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .text{
+            height: 50vh;
+            background-color: aliceblue;
+        }
+
+        .text h1{
+            color: #000;
+        }
+
+        .heading{
+            z-index: -1;
+            transform: translateY(-30vh) translateZ(1px);
+            color: #fff;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <div class="image" style="background-image: url('./resource/photo/illust_102638087_20221116_163857.jpg');"></div>
+        <div class="heading">
+            <h1>当生活的风暴来临时，坚持是我们最好的伙伴</h1>
+        </div>
+        <div class="text">当困难的山路摆在面前，勇气是我们最好的导航</div>
+    </div>
+
+    <div class="shell">
+        <div class="image" style="background-image: url('./resource/photo/illust_99749488_20221202_164106.png');"></div>
+        <div class="heading">
+            <h1>当迷茫的时刻降临，信念是我们最好的灯塔</h1>
+        </div>
+        <div class="text">每一次跌倒都是一次成长，每一次坚持都是一次进步</div>
+    </div>
+
+    <div class="shell">
+        <div class="image" style="background-image: url('./resource/photo/illust_101464947_20220928_105815.jpg');"></div>
+        <div class="heading">
+            <h1>加油，你一定能战胜一切！</h1>
+        </div>
+        <div class="text">勇敢是每一个成功故事的开始。</div>
+    </div>
+
+    <div class="shell">
+        <div class="image" style="background-image: url('./resource/photo/1662296173793.jpg');"></div>
+        <div class="heading">
+            <h1>不要等待机会，而是要创造机会。</h1>
+        </div>
+        <div class="text">每一天都是一个新的开始，迎接它，拥抱它。</div>
+    </div>
+</body>
+</html>
