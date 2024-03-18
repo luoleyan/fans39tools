@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation bar</title>
+    <style>
+        *{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #8a9c69;
+        }
+
+        .shell{
+            position: fixed;
+            width: 280px;
+            height: 650px;
+            background-color: #8a46c6;
+        }
+
+        .buttons{
+            margin: 60px 0;
+            color: #fff;
+        }
+
+        .li{
+            letter-spacing: 2px;
+            font: 600 17px '';
+            padding: 16px 52px;
+            transition: .3s;
+        }
+
+        .li::after{
+            content: '';
+            display: block;
+            position: absolute;
+            left: 20px;
+            margin-top: -22px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        
+        .buttons>li:hover{
+            background-color: #beb5bc;
+        }
+
+        .li ul{
+            width: 0;
+            height: 530px;
+            padding: 60px 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            background-color: #59699d;
+            transition: .3s;
+        }
+
+        .li ul li{
+            padding: 16px 24px;
+            transition: .3s;
+        }
+
+        .li:hover ul{
+            width: 228px;
+        }
+
+        .li ul li:hover{
+            background-color: #828be9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="shell">
+        <ul class="buttons">
+            <li class="li">
+                management
+                <ul>
+                    <li>Sold  baby</li>
+                    <li>Evaluation</li>
+                    <li>Shopkeeper</li>
+                    <li>Management</li>
+                </ul>
+            </li>
+
+            <li class="li">
+                logisitcs
+                <ul>
+                    <li>Warehouse    </li>
+                    <li>deliver goods</li>
+                    <li>stock        </li>
+                    <li>mail         </li>
+                    <li>return goods </li>
+                </ul>
+            </li>
+
+            <li class="li">
+                treasure
+                <ul>
+                    <li>Release baby   </li>
+                    <li>Posting Details</li>
+                    <li>Shop decoration</li>
+                </ul>
+            </li>
+
+            <li class="li">
+                financial service
+                <ul>
+                    <li>payment              </li>
+                    <li>Loan goods           </li>
+                    <li>Collection in advance</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

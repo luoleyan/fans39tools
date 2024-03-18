@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D perspective cards</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(to bottom right,
+                    #99ca30, #d7be3a, #f9bccc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1800px;
+        }
+
+        h1 {
+            color: #7887f9;
+            font: 800 32px;
+            margin-bottom: 30px;
+            transform: translateZ(35px);
+            text-shadow: 0 0 10px #7887f9;
+        }
+
+        .shell {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            padding: 35px;
+            transform-style: preserve-3d;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .boxs {
+            display: flex;
+            justify-content: space-between;
+            width: 730px;
+        }
+
+        .box {
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            height: 250px;
+            overflow: hidden;
+            perspective: 1200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(35px);
+            width: 230px;
+            text-align: center;
+        }
+
+        .img {
+            position: relative;
+            height: 100%;
+        }
+
+        .bg {
+            position: absolute;
+            transform: scale(1.1);
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
+
+        .one .img {
+            top: 20px;
+            right: -10px;
+            height: 120%;
+        }
+
+        .one .bg {
+            background-image: url("./resource/photo/20221227_194820.jpg");
+        }
+
+        .text {
+            display: flex;
+            align-items: center;
+            bottom: 0;
+            justify-content: center;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+            height: 70px;
+        }
+
+        .title {
+            color: #ffffff;
+            font: 700 16px '';
+            padding: 5px 20px;
+            background-color: #7daa66fc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <h1>Teacher</h1>
+        <div class="boxs">
+            <div class="box one">
+                <div class="bg"></div>
+                <img src="./resource/photo/illust_108553006_20230607_204942.png" class="img" alt="">
+                <div class="text">
+                    <p class="title">Good Luck</p>
+                </div>
+                <div class="box one">
+                    <div class="bg"></div>
+                    <img src="./resource/photo/illust_108553006_20230607_204942.png" class="img" alt="">
+                    <div class="text">
+                        <p class="title">Good Luck</p>
+                    </div>
+                    <div class="box one">
+                        <div class="bg"></div>
+                        <img src="./resource/photo/illust_108553006_20230607_204942.png" class="img" alt="">
+                        <div class="text">
+                            <p class="title">Good Luck</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                const shell = document.querySelector('.shell');
+                const images = document.querySelectorAll('.img');
+                const bg = document.querySelectorAll('.bg')
+
+                const range = 40
+
+                const calcValue = (a, b) => (a / b * range + range / 2).toFixed(1)
+
+                let timeout
+
+                document.addEventListener('mousemove', ({ x, y }) => {
+                    // 如果 timeout 变量有值，则取消该动画帧
+                    if (timeout) {
+                        window.cancelAnimationFrame(timeout);
+                    }
+                    // 设置 timeout 变量，执行下一帧动画
+                    timeout = window.requestAnimationFrame(() => {
+                        // 计算旋转角度值
+                        const yValue = calcValue(y, window.innerHeight);
+                        const xValue = calcValue(x, window.innerWidth);
+                        // 设置旋转角度
+                        shell.style.transform = `rotateX(${yValue}deg) rotateY(${xValue}deg)`;
+                        // 对所有图片进行平移变换
+                        [].forEach.call(images, (image) => {
+                            image.style.transform = `translateX(${-xValue}px) translateY(${yValue}px)`;
+                        });
+                        // 对所有背景图片进行位置调整
+                        [].forEach.call(backgrounds, (background) => {
+                            background.style.backgroundPosition = `${xValue * .45}px ${-yValue * .45}px`;
+                        })
+                    })
+                }, false);
+            </script>
+</body>
+
+</html>
