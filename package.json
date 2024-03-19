@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "gsap": "^3.12.5",
-    "jquery": "^3.7.1"
+    "jquery": "^3.7.1",
+    "parallax-js": "^3.1.0"
   }
 }
