@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel image transition effect</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(to right,
+            #fbc05d 0%,
+            #b75bcf 100%);
+        }
+
+        .shell{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            display: grid;
+            grid-template-rows: 500px 200px;
+        }
+
+        .box{
+            grid-row: 1 / 2;
+            grid-column: 1 / 8;
+            width: 100vw;
+            height: 570px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 800px;
+            --items: 5;
+            --middle: 3;
+            --position: 1;
+        }
+
+        div .item{
+            position: absolute;
+            width: 350px;
+            height: 500px;
+            background-color: coral;
+            --r: calc(var(var(--position) - var(--offset)));
+            --abs: max(calc(var(--r) * -1), var(--r));
+            transition: all .25s linear;
+            transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-300px) * var(--r));
+            z-index: calc((var(--position) - var(--abs)));
+            background-size: cover;
+            box-shadow: 0px 0px 30px rgba(0,0,0,.5);
+            border: #b5f5cf 10px solid;
+            border-radius: 5px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <input type="radio" name="position">
+        <input type="radio" name="position">
+        <input type="radio" name="position" checked>
+        <input type="radio" name="position">
+        <input type="radio" name="position">
+        <div class="box">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+</body>
+</html>
