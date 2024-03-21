@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallucinatory ghosting</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle farthest-side at center bottom,
+                    crimson, #003087 130%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .shell {
+            height: 260px;
+            width: 500px;
+        }
+
+        .box {
+            filter: grayscale(40%);
+        }
+
+        .box img {
+            position: absolute;
+            opacity: 0.4;
+            margin: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="box" id="box-a">
+            <img src="../resource/photo/illust_101462757_20220928_105758.png" alt="">
+        </div>
+
+        <div class="box" id="box-b">
+            <img src="../resource/photo/illust_101462757_20220928_105758.png" alt="">
+        </div>
+
+        <div class="box" id="box-c">
+            <img src="../resource/photo/illust_101462757_20220928_105758.png" alt="">
+        </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="../node_modules/gsap/dist/all.js"></script>
+
+    <script>
+        $body = $("body");
+        $heroA = $("#box-a img");
+        $heroB = $("#box-b img");
+        $heroC = $("#box-c img");
+
+        TweenMax.set($heroA, { transfotmStyle: 'preserve-3d' })
+        TweenMax.set($heroB, { transfotmStyle: 'preserve-3d' })
+        TweenMax.set($heroC, { transfotmStyle: 'preserve-3d' })
+
+        $body.mousemove(function (e) {
+            sxPox = e.pageX / $body.width() * 300 - 50
+            syPox = e.pageY / $body.height() * 300 - 50
+            console.log("x:" + sxPox + " y:" + syPox);
+
+            TweenMax.to($heroA, 1, {
+                rotationY: 0.05 * sxPox,
+                rotationX: 0.20 * syPox,
+                rotationZ: '-0.1',
+                transformPerspective: 500,
+            })
+
+            TweenMax.to($heroB, 1, {
+                rotationY: 0.10 * sxPox,
+                rotationX: 0.15 * syPox,
+                rotationZ: 0,
+                transformPerspective: 500,
+            })
+
+            TweenMax.to($heroC, 1, {
+                rotationY: 0.15 * sxPox,
+                rotationX: 0.10 * syPox,
+                rotationZ: 0.10,
+                transformPerspective: 500,
+            })
+        })
+    </script>
+</body>
+
+</html>

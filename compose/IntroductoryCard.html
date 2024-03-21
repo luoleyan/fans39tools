@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introductory card</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%) ;
+        }
+
+        .shell{
+            width: 780px;
+            height: 580px;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .head{
+            height: 340px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .head::before{
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: url("../resource/photo/illust_101464947_20220928_105815.jpg");
+            background-size: cover;
+            z-index: -1;
+            transform: skewY(-4deg);
+            transform-origin:0 0 ;
+        }
+
+        .cover{
+            position: absolute;
+            top: 190px;
+            left: 25px;
+            width: 220px;
+            z-index: 2;
+            border-radius: 500px;
+            border: 10px #fff solid;
+            box-shadow: 0 5px 10px #00000065;
+        }
+
+        .data{
+            padding: 190px 0 0 280px;
+            text-shadow: 0 0 20px #00000065;
+        }
+
+        .data .title1{
+            color: white;
+            font-size: 50px;
+            font: 900 50px '';
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .data .title1 span{
+            position: absolute;
+            top: 17px;
+            margin-left: 12px;
+            background: #ffe44c;
+            border-radius: 5px;
+            color: #000000;
+            font-size: 14px;
+            padding: 0 4px;
+        }
+
+        .data .title2{
+            color: #fff;
+            font: 500 24px;
+        }
+
+        .foot{
+            line-height: 26px;
+            color: #444;
+        }
+
+        .tags{
+            padding-left:  30px; ;
+            padding-top: 100px;
+            width: 250px;
+            float: left;
+            text-align: center;
+        }
+
+        .tag{
+            background: rgb(149,178,255);
+            color: #fff;
+            border-radius: 10px;
+            padding: 3px 8px;
+            font-size: 14px;
+            margin-right: 4px;
+            line-height: 35px;
+            cursor: pointer;
+        }
+
+        .tag:hover{
+            background: #eee4ad;
+            color: #444;
+        }
+
+        .introduce{
+            padding: 25px 0 0 30px;
+            width: 480px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <img src="../resource/photo/illust_102678030_20221116_163802.png" alt="" class="cover">
+        <div class="head">
+            <div class="data">
+                <div class="title1">洛乐言<span>GAYHUB</span></div>
+                <div class="title2">前端开发者</div>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="tags">
+                <span class="tag">#HTML</span>
+                <span class="tag">#CSS</span>
+                <span class="tag">#JAVASCRIPT</span>
+                <span class="tag">#JAVA</span>
+                <span class="tag">#KOTLIN</span>
+                <span class="tag">#SPRINGBOOT</span>
+                <span class="tag">#VUE</span>
+                <span class="tag">#SVELTE</span>
+            </div>
+            <div class="introduce">
+                <p>
+                    你好，我是洛乐言，一名前端开发者，喜欢研究各种新技术，对编程充满热情。
+                    我是一个热爱学习的人，对新鲜事物充满好奇心，喜欢尝试新的技术和工具。
+                    我是一个积极乐观的人，对生活充满热情，喜欢和朋友一起分享快乐。
+                    我是一个有责任的人，对工作认真负责，能够承受压力。
+                    我是一个有创造力的的人，对工作充满激情，能够提出新的想法和解决方案。
+                    我是一个有团队合作精神的人，能够与团队共同完成任务。
+                    我是一个有良好沟通能力的人，能够与不同的人进行有效的交流。
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

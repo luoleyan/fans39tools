@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background: rgb(156,21,89);
+        }
+
+        .img{
+            width: 66px;
+            height: 66px;
+            position: absolute;
+            background-image: url("../resource/photo/illust_107303249_20230609_090742.jpg");
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="img"></div>
+</body>
+<script>
+    let img = document.querySelector('.img');
+    let deg = 0
+    let imgx = 0
+    let imgy = 0
+    let imgl = 0
+    let imgt = 0
+    let y = 0
+    let index = 0
+
+    window.addEventListener('mousemove', function(xyz){
+        imgx = xyz.x - img.offsetLeft - img.offsetWidth/2
+        imgy = xyz.y - img.offsetTop - img.offsetHeight/2
+        deg = 360 * Math.atan(imgy/imgx) / (2 * Math.PI)
+        index = 0
+        let x = event.clientX
+        if(img.offsetLeft < x){
+            y = -180
+        }else{
+            y = 0
+        }
+    })
+
+    setInterval(() =>{
+        img.style.transform = "rotateX("+deg+"deg) rotateY("+y+"deg)"
+        index++
+        if(index < 50){
+            imgl += imgx / 50
+            imgt += imgy / 50
+        }
+        img.style.left = imgl + 'px'
+        img.style.top = imgt + 'px'
+    }, 1000/60)
+</script>
+</html>

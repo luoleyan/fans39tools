@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgba(206, 186, 96, 0.648);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .a {
+            position: relative;
+            width: 650px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .b {
+            width: 400px;
+            height: 500px;
+            transition: .4s;
+            background-size: cover;
+        }
+
+        .c {
+            width: 200px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .d {
+            position: relative;
+            width: 200px;
+            height: 90px;
+            right: 0;
+            transition: .5s;
+            overflow: hidden;
+        }
+
+        .d img {
+            position: absolute;
+            width: 200px;
+            transform: translate(0, -50px);
+            transition: .5s;
+            right: 0;
+        }
+
+        .d .dd {
+            opacity: 0;
+            right: 250px;
+        }
+
+        .d:hover img {
+            opacity: 0;
+            right: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a">
+        <div class="b"></div>
+        <div class="c">
+            <div class="d dd">
+                <img src="../resource/photo/20230309_170641.jpg" alt="">
+            </div>
+            <div class="d">
+                <img src="../resource/photo/1652794511360.jpg" alt="">
+            </div>
+            <div class="d">
+                <img src="../resource/photo/illust_93227017_20221123_141205.jpg" alt="">
+            </div>
+            <div class="d">
+                <img src="../resource/photo/IMG_20230609_092320.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let b = document.querySelector(".b")
+        let d = document.getElementsByClassName("d")
+        let time
+        let index = 0
+
+        const data = ["../resource/photo/20230309_170641.jpg",
+            "../resource/photo/1652794511360.jpg",
+            "../resource/photo/illust_93227017_20221123_141205.jpg",
+            "../resource/photo/IMG_20230609_092320.jpg"]
+
+        let a = function () {
+            for (let i = 0; i < d.length; i++) {
+                d[i].className = "d"
+            }
+        }
+
+        let aa = function () {
+            a()
+            d[index].className = "d dd"
+        }
+
+        function ts() {
+            time = setInterval(function () {
+
+                if (index < 5) {
+                    aa()
+                    b.style.backgroundImage = `url('${data[index]}')`
+                    index++
+                } else {
+                    index = 0
+                }
+
+            }, 1500)
+        }
+
+        for (let i = 0; i < d.length; i++) {
+            d[i].onmousemove = function () {
+                b.style.backgroundImage = `url('${data[index]}')`
+                a()
+                clearInterval(time)
+                index = i + 1
+                ts()
+            }
+        }
+
+        ts()
+    </script>
+</body>
+
+</html>

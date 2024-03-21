@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text pops up on a stand-alone page</title>
+    <style>
+        body {
+            background-color: rgb(39, 35, 35);
+        }
+
+        span {
+            /* 让弹出来的文字不被选中，影响操作体验 */
+            user-select: none;
+            cursor: default;
+            font-size: 20px;
+            color: blanchedalmond;
+            position: absolute;
+            transition: 1s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        var arr = ["Hello World!",
+            "I love programming!",
+            "This is so cool!",
+            "1234567890",
+            "I am learning JavaScript!",
+            "Have a nice day!",
+            "Bye!"];
+            document.onclick = function (x) {
+            // 创建元素节点对象
+            var span = document.createElement("span")
+            // 获取当前鼠标的坐标
+            span.style.left = x.clientX + "px"
+            span.style.top = x.clientY + "px"
+            // 让span的值为arr数组内随机的一个值
+            span.innerHTML = arr[Math.floor(Math.random() * arr.length)]
+            // 设置span的动画效果（这里可以自行）
+            setTimeout(function () {
+                span.style.opacity = "1"
+                span.style.transform = "translateY(-100px)"
+            }, 100)
+            setTimeout(function () {
+                span.style.opacity = "0.2"
+                span.style.transform = "translateY(-230px)"
+            }, 1500)
+            // 最后一步是清掉opacirt为0的span
+            setTimeout(function () {
+                var chi = document.getElementsByTagName("span")
+                for (var i = 0; i < chi.length; i++) {
+                    if (chi[i].style.opacity == "0") {
+                        document.body.removeChild(chi[i])
+                    }
+                }
+            }, 1000)
+            // 将span添加到body里
+            document.body.appendChild(span)
+        }
+    </script>
+</body>
+
+</html>

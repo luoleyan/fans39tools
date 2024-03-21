@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to the searchlight</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition: .2s;
+        }
+
+        :root {
+            --bgColor: white;
+            --inputColor: black;
+            --outputColor: rgb(60, 155, 235);
+            border: black;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--bgColor);
+        }
+
+        .shell {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(../resource/photo/114514.avif);
+            background-size: cover;
+        }
+
+        body.show-password{
+            --bgColor: rgba(0,0,0,0.9);
+            --inputColor: white;
+            --border: rgb(255, 255, 255);
+        }
+
+        form{
+            transform: translate3d(0,0,0);
+            padding: 50px;
+            border: 20px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px #00000065;
+        }
+
+        form>*+*{
+            margin-top: 15px;
+        }
+
+        .form-item>*+*{
+            margin-top: 15px;
+        }
+
+        h2,
+        label,
+        input,
+        button {
+            font-size: 2rem;
+            color: var(--inputColor);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h2{
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        label:focus,
+        input:focus,
+        button:focus{
+            outline-offset: 2px;
+        }
+
+        label::-moz-focus-inner,
+        input::-moz-focus-inner,
+        button::-moz-focus-inner{
+            border: none;
+        }
+
+        label[id= "password"],
+        input[id= "password"],
+        button[id= "password"]{
+            color: black;
+        }
+
+        button{
+            border: none;
+        }
+
+        [id="submit"]{
+            width: 100%;
+            cursor: pointer;
+            margin: 20px 0 0 20px;
+            padding: 0.75rem 1.25rem;
+            color: var(--bgColor);
+            background-color: var(--inputColor);
+            box-shadow: 4px 4px 0 rgba(30,144,255,0.2);
+        }
+
+        [id="submit"]:active{
+            transform: translateY(1px);
+        }
+
+        .input-wrapper{
+            position: relative;
+        }
+
+        input{
+            padding: 0.75rem 4rem 0.75rem 0.75rem;
+            width: 100%;
+            border: 2px solid transparent;
+            border-radius: 0;
+            background-color: transparent;
+            box-shadow: inset 0 0 0 2px black, inset 6px 6px 0 rgba(30,144,255,0.2), 3px 3px 0 rgba(30,144,255,0.2);
+        }
+
+        input:focus{
+            outline-offset: 1px;
+        }
+
+        .show-password input{
+            box-shadow: inset 0 0 0 2px black;
+            border: 2px dashed white;
+        }
+
+        .show-password input:focus{
+            outline: none;
+            border-color: rgb(255,255,145);
+        }
+
+        [id="eyeball"]{
+            --size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            outline: none;
+            position: absolute;
+            top: 50%;
+            right: 0.75rem;
+            border: none;
+            background-color: transparent;
+            transform: translateY(-50%);
+        }
+
+        [id="eyeball"]:active{
+            transform: translateY(calc(-50%+1px));
+        }
+
+        .eye{
+            width: var(--size);
+            height: var(--size);
+            border: 2px solid var(--inputColor);
+            border-radius: calc(var(--size) / 1.5) 0;
+            transform: rotate(45deg);
+        }
+
+        .eye::before,
+        .eye::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 100%;
+        }
+
+        .eye::before{
+            width: 35%;
+            height: 35%;
+            background-color: var(--inputColor);
+        }
+
+        .eye::after{
+            width: 65%;
+            height: 65%;
+            border: 2px solid var(--inputColor);
+            border-radius: 100%;
+        }
+
+        /* 设置光束样式 */
+        [id=beam] {
+            position: absolute;
+            /* 设置绝对定位 */
+            top: 50%;
+            /* 设置顶部距离为50% */
+            right: 1.75rem;
+            /* 设置右侧距离为1.75rem */
+            clip-path: polygon(100% 50%, 100% 50%, 0 0, 0 100%);
+            /* 设置剪切路径为多边形 */
+            width: 100vw;
+            /* 设置宽度为100vw */
+            height: 25vw;
+            /* 设置高度为25vw */
+            z-index: 1;
+            /* 设置层级为1 */
+            mix-blend-mode: multiply;
+            /* 设置混合模式为multiply */
+            transition: transform 200ms ease-out;
+            /* 设置过渡效果为200ms的ease-out */
+            transform-origin: 100% 50%;
+            /* 设置变换原点为右侧50% */
+            transform: translateY(-50%) rotate(var(--beamDegrees, 0));
+            /* 设置向上位移50%并旋转--beamDegrees度 */
+            pointer-events: none;
+            /* 禁用指针事件 */
+        }
+
+        .show-password [id=beam] {
+            background: rgb(255, 255, 145);
+            /* 设置背景颜色为RGB(255, 255, 145) */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <form action="">
+            <h2>LOGIN</h2>
+            <div class="form-item">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off"
+                        spellcheck="false" data-lpignore="true" />
+                </div>
+            </div>
+
+            <div class="form-item">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off"
+                        spellcheck="false" data-lpignore="true" />
+                        <button type="button" id="eyeball">
+                            <div class="eye"></div>
+                        </button>
+                        <div id="beam"></div>
+                </div>
+            </div>
+            <button id="submit">Sign in</button>
+        </form>
+    </div>
+
+    <script>
+        // 获取根元素和其他DOM元素
+        const root = document.documentElement; // 获取根元素
+        const eye = document.querySelector('#eyeball'); // 获取眼睛按钮元素
+        const beam = document.querySelector('#beam'); // 获取光束元素
+        const passwordInput = document.querySelector('#password'); // 获取密码输入框元素
+
+        // 鼠标移动事件监听器
+        root.addEventListener('mousemove', (e) => {
+            // 获取光束的位置和鼠标位置
+            let rect = beam.getBoundingClientRect(); // 获取光束元素的位置信息
+            let mouseX = rect.right + (rect.width / 2); // 光束的横坐标
+            let mouseY = rect.top + (rect.height / 2); // 光束的纵坐标
+            // 计算角度
+            let rad = Math.atan2(mouseX - e.pageX, mouseY - e.pageY); // 计算鼠标和光束之间的角度
+            let degrees = (rad * (20 / Math.PI) * -1) - 350; // 将弧度转换为角度
+            // 设置根元素的样式变量
+            root.style.setProperty('--beamDegrees', `${degrees}deg`); // 设置根元素的样式变量，控制光束的旋转角度
+        });
+
+        // 眼睛按钮点击事件监听器
+        eye.addEventListener('click', e => {
+            e.preventDefault(); // 阻止默认行为
+            // 切换显示密码的状态
+            document.body.classList.toggle('show-password'); // 切换body元素的类名，控制密码是否显示
+            // 切换密码输入框的类型
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password'; // 切换密码输入框的类型，控制密码是否显示
+            // 聚焦到密码输入框
+            passwordInput.focus(); // 将焦点聚焦到密码输入框
+        });
+    </script>
+</body>
+
+</html>

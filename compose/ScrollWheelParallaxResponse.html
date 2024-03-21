@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll wheel parallax response</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 200vh;
+            overflow-x: hidden;
+        }
+
+        .background {
+            background-image: url("../resource/photo/illust_97285941_20220915_160606.jpg");
+            background-size: cover;
+            background-position: 50% 50%;
+            height: 200vh;
+            font: 900 39rem '';
+            line-height: 130vh;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-image: inherit;
+            background-position: 50% 50%;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+        h1{
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 10px;
+            color: aliceblue;
+        }
+
+        h2{
+            position: absolute;
+            letter-spacing: 2px;
+            top: 120vh;
+            width: 60%;
+            color: aliceblue;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>GAYHUB <br>
+        LUOLEYAN</h1>
+    <div class="background"><span>WING</span></div>
+    <h2>
+        这张图片展示了一个带有天使翅膀的动漫风格人物，她被描绘为站在一个充满蓝色和白色调的幻想环境中。
+
+        图片是一位动漫风格的角色，拥有长发和天使翅膀，站在一个梦幻般的背景前。
+        角色头上戴着花环，并且有一个光环围绕在头顶。
+        她手中拿着一只蓝色的蝴蝶，周围还飞舞着其他几只蝴蝶。
+        她穿着一件白色连衣裙，裙子下摆呈现出轻盈、飘逸的感觉。
+        背景是由淡蓝和白色调构成，给人一种宁静、梦幻的感觉。其中包含了抽象元素如光斑和泡泡等装饰性图案。
+        这个画面充满了神秘和浪漫的氛围，让人不禁沉醉其中。如果你对这位天使风格的角色有更多的好奇，或者想象她的故事，那么这幅画作绝对值得深入探讨。
+    </h2>
+
+<script>
+    const background = document.querySelector('.background');
+
+    document.addEventListener('scroll', () =>{
+        const scrollY = window.scrollY;
+
+        if(scrollY !== 0){
+            background.style.backgroundPosition = `calc(50% + ${scrollY}px) calc(50% + ${scrollY}px)`
+        }else{
+            background.style.backgroundPosition = '';
+        }
+    })
+</script>
+</body>
+
+</html>

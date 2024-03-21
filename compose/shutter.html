@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shutters</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: rgb(235, 235, 235);
+            display: flex;
+            justify-content: center;
+        }
+
+        .a{
+            width: 900px;
+            height: 300px;
+            position: relative;
+            top: 200px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .b{
+            transition: .7s;
+            overflow: hidden;
+        }
+
+        .b:hover{
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        img{
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <div class="b"><img src="../resource/photo/illust_101462757_20220928_105758.png" alt=""></div>
+        <div class="b"><img src="../resource/photo/illust_99459363_20220915_161017.jpg" alt=""></div>
+        <div class="b"><img src="../resource/photo/f6f3na.jpg" alt=""></div>
+        <div class="b"><img src="../resource/photo/1697502384290.jpg" alt=""></div>
+        <div class="b"><img src="../resource/photo/1697502384249.jpg" alt=""></div>
+        <div class="b"><img src="../resource/photo/1697502384219.jpg" alt=""></div>
+        <div class="b"><img src="../resource/photo/1697502384178.jpg" alt=""></div>
+    </div>
+</body>
+</html>
