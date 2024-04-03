@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image vs. slider</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            background-image: url(../resource/photo/illust_104350264_20230531_093134.png);
+            background-size: cover;
+        }
+
+        .compare{
+            display: grid;
+        }
+
+        .compare *{
+            width: 800px;
+            grid-area: 1/1;
+        }
+
+        .compare section{
+            display: grid;
+            place-content: center;
+        }
+
+        .before{
+            clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+        }
+
+        .after{
+            clip-path: inset(0 0 0 var(--pos, 50%));
+        }
+
+        #range{
+            z-index: 1;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        #range::-webkit-slider-thumb{
+            appearance: none;
+            width: 10px;
+            height: 100vh;
+            background-image: linear-gradient(to bottom,
+            #91dfdf,
+            #99cf0d,
+            #bdbc4d,
+            #b7dacf,
+            #efd3c9,
+            #f9bc30
+            );
+        }
+    </style>
+</head>
+<body>
+    <div class="compare">
+        <section class="before" name="" id="">
+            <img src="../resource/photo/illust_108397967_20230531_093340.jpg" alt="">
+        </section>
+
+        <section class="after" name="" id="">
+            <img src="../resource/photo/illust_108550600_20230607_204949.png" alt="">
+        </section>
+
+        <input type="range" id="range">
+    </div>
+</body>
+<script>
+    const range = document.getElementById('range');
+    const before = document.querySelector('.before');
+    const after = document.querySelector('.after');
+
+    range.oninput = function(){
+        document.body.style.setProperty('--pos', `${this.value}%`);
+    }
+
+    // range.addEventListener('input', (e) => {
+    //     before.style.setProperty('--pos', `${e.target.value}%`);
+    //     after.style.setProperty('--pos', `${100 - e.target.value}%`);
+    // })
+</script>
+</html>
