@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS advanced animations</title>
+    <style>
+        /* 设置网页的背景色和文字颜色，以及最小高度，并将其设置为视窗的100% */
+        body {
+            background-color: #000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            /* 居中显示内容 */
+            perspective: 800px;
+            /* 设置3D视角的距离 */
+        }
+
+        /* 设置所有子元素的3D转换样式 */
+        body * {
+            transform-style: preserve-3d;
+        }
+
+        /* 场景的基本样式，设置相对定位 */
+        .scene {
+            position: relative;
+            animation: scene 40s infinite linear;
+            /* 设置动画，旋转360度，持续40秒，无限循环 */
+        }
+
+        /* 定义scene动画的关键帧 */
+        @keyframes scene {
+            from {
+                transform: rotateX(45deg) rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateX(45deg) rotateZ(360deg);
+            }
+        }
+
+        /* 设置网格的样式，使用绝对定位并设置内部边距 */
+        .grid {
+            position: absolute;
+            inset: -10em;
+            /* 设置网格的内部位置 */
+            display: grid;
+            /* 使用网格布局 */
+            grid-template-columns: repeat(10, 1fr);
+            /* 定义10列，每列大小相等 */
+            gap: 1.5em;
+            /* 设置网格间隙 */
+        }
+
+        /* 设置网格中的每个项目i的基本样式 */
+        .grid i {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            animation: i 5s var(--delay, 0s) infinite linear;
+            /* 设置动画，持续5秒，根据变量--delay设置延迟 */
+        }
+
+        /* 定义i动画的关键帧 */
+        @keyframes i {
+            from {
+                transform: rotate(0deg) rotateX(30deg);
+            }
+
+            to {
+                transform: rotate(360deg) rotateX(30deg);
+            }
+        }
+
+        /* 设置i元素的::before和::after伪元素样式 */
+        .grid i::before,
+        .grid i::after {
+            content: "";
+            position: absolute;
+            top: -950%;
+            width: 120%;
+            height: 2000%;
+            transform: rotateX(90deg);
+            border-radius: 50%;
+            background-image: linear-gradient(#000000, rgb(6, 255, 118));
+            /* 设置背景渐变 */
+        }
+
+        .grid i::after {
+            transform: rotateX(90deg) rotateY(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene">
+        <div class="grid"></div>
+    </div>
+
+    <script>
+        const gridElement = document.querySelector('.grid');
+        let htmlCode = '';
+
+        for (let i = 0; i < 110; i++) {
+            let rowStartDelay = -0.2 * Math.floor(i / 10); // 计算每行的开始延迟
+            let delay = rowStartDelay + -0.22 * (i % 10); // 计算每个元素的延迟
+            htmlCode += `<i style="--delay:${delay}s;"></i>`; // 创建HTML代码，并设置延迟
+        }
+
+        gridElement.innerHTML = htmlCode; // 将生成的HTML代码插入网格中
+    </script>
+</body>
+
+</html>
