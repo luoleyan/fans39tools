@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS差滚动相册</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #114514;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .eye-container {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            display: grid;
+            grid-template: repeat(9, 1fr) / repeat(9, 1fr);
+        }
+
+        .eye {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 0 10px #000 0px 0px 10px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .pupil {
+            width: 25px;
+            height: 25px;
+            background-color: #000000;
+            border-radius: 50%;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="eye-container"></div>
+</body>
+
+<script>
+    console.clear()
+
+    const eyeContainer = document.querySelector('.eye-container')
+
+    for (let i = 0; i < 81; i++) {
+        createEye()
+    }
+
+    const eyes = document.querySelectorAll('.eye')
+
+    function createEye() {
+        const eye = document.createElement('div')
+        const pupil = document.createElement('div')
+        eye.classList.add('eye')
+        pupil.classList.add('pupil')
+        eye.appendChild(pupil)
+        eyeContainer.appendChild(eye)
+    }
+
+    document.body.onpointermove = e => {
+        eyes.forEach(eye => {
+            const pupil = eye.querySelector('.pupil')
+            const eyeRect = eye.getBoundingClientRect()
+            const eyeCenterX = eyeRect.left + eyeRect.width / 2
+            const eyeCenterY = eyeRect.top + eyeRect.height / 2
+
+            const dx = (e.clientX - eyeCenterX) / eyeRect.width
+            const dy = (e.clientY - eyeCenterY) / eyeRect.height
+
+            const distance = Math.sqrt(dx * dx + dy * dy)
+            const maxDistance = 0.9
+            const clampedDistance = Math.min(distance, maxDistance) / maxDistance
+
+            const angle = Math.atan2(dy, dx)
+            const pupilX = Math.cos(angle) * clampedDistance * (eyeRect.width / 2 - pupil.offsetWidth / 2)
+            const pupilY = Math.sin(angle) * clampedDistance * (eyeRect.height / 2 - pupil.offsetHeight / 2)
+
+            pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`
+
+            const shadowOffsetX = pupilX / 4
+            const shadowOffsetY = pupilY / 2
+            const shadowBlur = 10
+            eye.style.boxShadow = `inset ${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px rgba(0, 0, 0, 0.5)`
+        })
+    }
+
+    document.body.onpointerleave = () => {
+        eyes.forEach(eye => {
+            const pupil = eye.querySelector('.pupil')
+            pupil.style.transform = 'translate(0, 0)'
+            eye.style.boxShadow = 'inset 0 0 10px rgba(0, 0, 0, 0.5)'
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS差滚动相册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffadfc;
+        }
+
+        main {
+            display: grid;
+            gap: 2rem;
+            /* 500px */
+            grid-template-columns: repeat(3, 500px);
+            overflow-y: hidden;
+            padding: 50px;
+        }
+
+        section {
+            display: flex;
+            gap: 2rem;
+            flex-direction: column;
+        }
+
+        section:nth-child(1),
+        section:nth-child(3) {
+            animation: scroller  linear;
+            animation-timeline: scroll(root);
+            flex-direction: column-reverse;
+            /* -100% + 100vh */
+            translate: 0% calc(-100% + 100vh);
+        }
+
+        section img {
+            box-shadow: 0 0 10px #000;
+            border-radius: 5px;
+            transition: .3s;
+        }
+
+        section img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #000;
+        }
+
+        @keyframes scroll {
+            0% {
+                translate: 0%;
+            }
+
+            100% {
+                translate: 0% calc(-100% * 2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+            <img src="../resource/photo/1668596353761.jpg" alt="">
+            <img src="../resource/photo/1697502384144.jpg" alt="">
+            <img src="../resource/photo/1689333766724.png" alt="">
+            <img src="../resource/photo/1697502384243.jpg" alt="">
+            <img src="../resource/photo/illust_82937235_20230527_100433.jpg" alt="">
+            <img src="../resource/photo/illust_99413046_20230608_191935.jpg" alt="">
+            <img src="../resource/photo/illust_102678030_20221116_163802.png" alt="">
+        </section>
+        <section>
+            <img src="../resource/photo/illust_106784788_20230608_214330.jpg" alt="">
+            <img src="../resource/photo/illust_108657634_20230607_204624.jpg" alt="">
+            <img src="../resource/photo/wallhaven-r25jdm.jpg" alt="">
+            <img src="../resource/photo/IMG_20230609_092320.jpg" alt="">
+            <img src="../resource/photo/illust_107770146_20230607_205013.png" alt="">
+            <img src="../resource/photo/illust_107303249_20230609_090735.jpg" alt="">
+            <img src="../resource/photo/illust_106381609_20230609_091022.png" alt="">
+        </section>
+        <section>
+            <img src="../resource/photo/illust_104228964_20230608_203757.png" alt="">
+            <img src="../resource/photo/illust_101464947_20220928_105815.jpg" alt="">
+            <img src="../resource/photo/illust_96308041_20221116_163750.png" alt="">
+            <img src="../resource/photo/1677248326737.jpg" alt="">
+            <img src="../resource/photo/114514.avif" alt="">
+            <img src="../resource/photo/1653229685414.jpg" alt="">
+            <img src="../resource/photo/illust_108335154_20230607_205019.png" alt="">
+        </section>
+    </main>
+</body>
+
+</html>
