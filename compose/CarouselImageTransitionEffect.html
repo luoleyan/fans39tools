@@ -142,15 +142,31 @@
         input:nth-of-type(5):checked ~ .box{
             --position: 5;
         }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
     </style>
 </head>
 <body>
     <div class="shell">
-        <input type="radio" name="position">
-        <input type="radio" name="position">
-        <input type="radio" name="position" checked>
-        <input type="radio" name="position">
-        <input type="radio" name="position">
+        <input type="radio" name="position" id="position1">
+        <label for="position1" class="visually-hidden">Position 1</label>
+        <input type="radio" name="position" id="position2">
+        <label for="position2" class="visually-hidden">Position 2</label>
+        <input type="radio" name="position" id="position3" checked>
+        <label for="position3" class="visually-hidden">Position 3</label>
+        <input type="radio" name="position" id="position4">
+        <label for="position4" class="visually-hidden">Position 4</label>
+        <input type="radio" name="position" id="position5">
+        <label for="position5" class="visually-hidden">Position 5</label>
         <div class="box">
             <div class="item"></div>
             <div class="item"></div>
