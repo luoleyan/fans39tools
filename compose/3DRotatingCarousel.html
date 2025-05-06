@@ -55,8 +55,21 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             border-radius: 6px;
             background-size: cover;
-            -webkit-box-reflect: below 10px  -webkit-linear-gradient(transparent, #0005);
+            transform-style: preserve-3d;
+        }
 
+        .item::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+            transform: rotateX(180deg);
+            transform-origin: top;
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         .item:nth-child(1){
