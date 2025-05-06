@@ -11,6 +11,7 @@
             margin: 0;
             font-family: "优设标题黑";
             -webkit-user-select: none;
+            user-select: none;
         }
 
         body{
@@ -35,6 +36,7 @@
             rgba(255, 255, 255, 0.1),
             rgba(255, 255, 255, 0.05),
             rgba(255, 255, 255, 0.025));
+            -webkit-backdrop-filter: blur(16px);
             backdrop-filter: blur(16px);
             display: flex;
             flex-direction: column;
@@ -59,6 +61,7 @@
         .shell input[type = range]{
             margin: 0;
             -webkit-appearance: none !important;
+            appearance: none !important;
             padding: 0;
             background: rgb(255, 255, 255);
             height: 5px;
@@ -87,6 +90,7 @@
 
         .shell input[type = range]::-ms-thumb{
             -webkit-appearance: none !important;
+            appearance: none !important;
             background: #ff3667;
             height: 8px;
             width: 8px;
@@ -261,7 +265,7 @@
         </div>
 
         <div class="music-box">
-            <input type="range" class="seekbar" step="1" value="0" min="0" max="100" oninput="handleSeekBar()">
+            <input type="range" class="seekbar" step="1" value="0" min="0" max="100" oninput="handleSeekBar()" title="Music progress">
             <audio src="" class="music-element">
                 <source src="../resource/music/ヨルシカ (Yorushika) - 晴る_hires.flac">
             </audio>

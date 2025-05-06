@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Follow the mouse's photo album</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
-        
-        #scene{
+
+        #scene {
             background-color: rgb(145, 151, 127);
             position: relative;
             overflow: hidden;
             width: 100%;
         }
 
-        .layer{
+        .layer {
             pointer-events: none;
         }
 
-        h2{
+        h2 {
             font-size: 18px;
             width: 90%;
         }
 
-        .col{
-            display: inline-block;
+        .col {
+            display: block;
             float: left;
             overflow: hidden;
             width: 12.5%;
@@ -38,21 +39,21 @@
             margin: 0 0 30px;
         }
 
-        .layer .main{
+        .layer .main {
             width: 150%;
             position: absolute;
             z-index: 1;
             padding: 20px;
         }
 
-        .col a{
+        .col a {
             display: block;
             margin: 15px;
             overflow: hidden;
-            box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .col a .hover{
+        .col a .hover {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -62,7 +63,7 @@
             color: whitesmoke;
         }
 
-        .col a .hover:after{
+        .col a .hover:after {
             content: '';
             position: absolute;
             top: 0;
@@ -76,12 +77,12 @@
             transition: 0.35s ease;
         }
 
-        .col a .hover:hover:after{
+        .col a .hover:hover:after {
             opacity: 0.7;
             transition: 0.35s ease;
         }
 
-        .align-bottom{
+        .align-bottom {
             position: absolute;
             width: 100%;
             bottom: 0%;
@@ -89,7 +90,7 @@
             padding: 15px 20px;
         }
 
-        .bg-img{
+        .bg-img {
             padding: 0;
             width: 100%;
             height: 100%;
@@ -99,19 +100,32 @@
             background-position: 50% 50%;
         }
 
+        /* 删除 background-image 设置，仅保留样式结构 */
+        .bg-img {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: 50% 50%;
+            /* 移除了 background-image，由 JS 动态注入 */
+        }
+
         @media only screen and (max-width: 1200px) {
-            .layer .col{
+            .layer .col {
                 width: 16%;
             }
         }
 
         @media only screen and (max-width: 650px) {
-            .layer .col{
+            .layer .col {
                 width: 25%;
             }
         }
     </style>
 </head>
+
 <body>
     <section id="scene" data-scalar-y="150.0" data-scalar-x="100.0">
         <div class="layer main" data-depth="1.0">
@@ -122,7 +136,7 @@
                             <h2>起风了 風立ちぬ (2013)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/IMG_20230609_092320.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/IMG_20230609_092320.jpg">
                     </div>
                 </a>
             </div>
@@ -134,8 +148,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/20221109_152701.jpg);">
-
+                    <div class="bg-img" data-image="./resource/photo/20221109_152701.jpg">
                     </div>
                 </a>
             </div>
@@ -147,7 +160,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/20221118_145053.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/20221118_145053.jpg">
                     </div>
                 </a>
             </div>
@@ -158,7 +171,7 @@
                             <h2>魔女宅急便 魔女の宅急便 (1989)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_108803519_20230609_090948.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_108803519_20230609_090948.jpg">
                     </div>
                 </a>
             </div>
@@ -170,7 +183,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_108682482_20230607_204934.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_108682482_20230607_204934.jpg">
                     </div>
                 </a>
             </div>
@@ -182,7 +195,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_108553006_20230607_204942.png);">
+                    <div class="bg-img" data-image="./resource/photo/illust_108553006_20230607_204942.png">
                     </div>
                 </a>
             </div>
@@ -193,7 +206,7 @@
                             <h2>借东西的小人阿莉埃蒂 借りぐらしのアリエッティ (2010)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_102739215_20221119_111254.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_102739215_20221119_111254.jpg">
                     </div>
                 </a>
             </div>
@@ -205,7 +218,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_102677733_20221116_163943.png);">
+                    <div class="bg-img" data-image="./resource/photo/illust_102677733_20221116_163943.png">
                     </div>
                 </a>
             </div>
@@ -217,7 +230,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_102304834_20221119_111226.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_102304834_20221119_111226.jpg">
                     </div>
                 </a>
             </div>
@@ -228,7 +241,7 @@
                             <h2>萤火虫之墓 火垂るの墓 (1988)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_101647549_20221123_141320.png);">
+                    <div class="bg-img" data-image="./resource/photo/illust_101647549_20221123_141320.png">
                     </div>
                 </a>
             </div>
@@ -240,7 +253,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_96196782_20221123_141238.png);">
+                    <div class="bg-img" data-image="./resource/photo/illust_96196782_20221123_141238.png">
                     </div>
                 </a>
             </div>
@@ -252,7 +265,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_95190271_20221123_140228.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_95190271_20221123_140228.jpg">
                     </div>
                 </a>
             </div>
@@ -263,7 +276,7 @@
                             <h2>言叶之庭 言の葉の庭 (2013)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_94181222_20221123_141247.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_94181222_20221123_141247.jpg">
                     </div>
                 </a>
             </div>
@@ -275,7 +288,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/illust_93227017_20221123_141205.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/illust_93227017_20221123_141205.jpg">
                     </div>
                 </a>
             </div>
@@ -287,7 +300,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1669558442157.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1669558442157.jpg">
                     </div>
                 </a>
             </div>
@@ -299,7 +312,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1669388879330.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1669388879330.jpg">
                     </div>
                 </a>
             </div>
@@ -310,7 +323,7 @@
                             <h2>飞屋环游记 Up (2009)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1669216935254.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1669216935254.jpg">
                     </div>
                 </a>
             </div>
@@ -322,7 +335,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1668785902945.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1668785902945.jpg">
                     </div>
                 </a>
             </div>
@@ -334,7 +347,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1668596353761.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1668596353761.jpg">
                     </div>
                 </a>
             </div>
@@ -345,7 +358,7 @@
                             <h2>穿越时空的少女 時をかける少女 (2006)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1656002082454.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1656002082454.jpg">
                     </div>
                 </a>
             </div>
@@ -357,7 +370,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1655627609782.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1655627609782.jpg">
                     </div>
                 </a>
             </div>
@@ -369,7 +382,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1655042307248.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1655042307248.jpg">
                     </div>
                 </a>
             </div>
@@ -380,7 +393,7 @@
                             <h2>魁拔之十万火急 (2011)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1654349245099.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1654349245099.jpg">
                     </div>
                 </a>
             </div>
@@ -392,7 +405,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1653925636726.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1653925636726.jpg">
                     </div>
                 </a>
             </div>
@@ -404,7 +417,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1653229685414.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1653229685414.jpg">
                     </div>
                 </a>
             </div>
@@ -415,7 +428,7 @@
                             <h2>罗小黑战记 (2019)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1653056653050.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1653056653050.jpg">
                     </div>
                 </a>
             </div>
@@ -427,7 +440,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1652919544277.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1652919544277.jpg">
                     </div>
                 </a>
             </div>
@@ -439,7 +452,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1652884167144.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1652884167144.jpg">
                     </div>
                 </a>
             </div>
@@ -450,7 +463,7 @@
                             <h2>意外的幸运签 カラフル (2010)</h2>
                         </div>
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1652847111583.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1652847111583.jpg">
                     </div>
                 </a>
             </div>
@@ -462,7 +475,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1652794511360.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1652794511360.jpg">
                     </div>
                 </a>
             </div>
@@ -474,7 +487,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/1652716581961.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/1652716581961.jpg">
                     </div>
                 </a>
             </div>
@@ -486,7 +499,7 @@
                         </div>
 
                     </div>
-                    <div class="bg-img" style="background-image:url(./resource/photo/20230309_170641.jpg);">
+                    <div class="bg-img" data-image="./resource/photo/20230309_170641.jpg">
                     </div>
                 </a>
             </div>
@@ -497,6 +510,17 @@
     <script src="./node_modules/parallax-js/dist/parallax.min.js"></script>
 
     <script>
+        $(document).ready(function () {
+            makeWinHeight();
+
+            // 动态设置 .bg-img 的背景图片
+            $('.bg-img').each(function () {
+                var imgPath = $(this).data('image');
+                if (imgPath) {
+                    $(this).css('background-image', 'url("' + imgPath + '")');
+                }
+            });
+        });
         // 使用库
         //定义一个名为 makeWinHeight 的函数，用于设置窗口高度和项目高度
         var makeWinHeight = function () {
@@ -521,4 +545,5 @@
         var parallax = new Parallax(scene);
     </script>
 </body>
+
 </html>

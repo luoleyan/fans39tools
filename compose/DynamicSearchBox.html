@@ -104,18 +104,22 @@
         @keyframes box {
             0% {
                 transform: rotate(0deg);
+                will-change: transform;
             }
 
             33% {
                 transform: rotate(8deg);
+                will-change: transform;
             }
 
             66% {
                 transform: rotate(-8deg);
+                will-change: transform;
             }
 
             100% {
                 transform: rotate(0deg);
+                will-change: transform;
             }
         }
     </style>
@@ -124,7 +128,7 @@
 <body>
     <div class="shell">
         <input type="text" placeholder="search">
-        <a href="#">
+        <a href="#" title="Search">
             <i class="fa fa-hand-o-right"></i>
             <i class="fa fa-search"></i>
         </a>

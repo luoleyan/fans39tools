@@ -73,8 +73,32 @@
             transition: .5s .5s;
         }
 
+        .d.first {
+            --i: 1;
+            --w: 1.5;
+        }
+
+        .d.second {
+            --i: 2;
+            --w: 1.6;
+        }
+
+        .d.third {
+            --i: 3;
+            --w: 1.4;
+        }
+
+        .d.fourth {
+            --i: 4;
+            --w: 1.7;
+        }
+
         .d:nth-child(2){
             background: rgb(240,150,150);
+        }
+
+        .e.first {
+            --i: 1;
         }
 
         .e{
@@ -132,11 +156,11 @@
                 我期待能够加入一个充满活力的团队，在那里我可以继续发挥我的专长，并与同事们一起推动技术的边界。</span>
         </div>
         <div class="c">
-            <div class="d" style="--i:1; --w:1.5"></div>
-            <div class="d" style="--i:2; --w:1.6"></div>
-            <div class="d" style="--i:3; --w:1.4"></div>
-            <div class="d" style="--i:4; --w:1.7"></div>
-            <div class="e" style="--i:1"></div>
+            <div class="d first"></div>
+            <div class="d second"></div>
+            <div class="d third"></div>
+            <div class="d fourth"></div>
+            <div class="e first"></div>
         </div>
         <div class="f"></div>
     </div>
